@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Image from './Components/Image';
 import './App.css';
 
+let tempImageUrl =``
+
 class App extends Component {
+
+  state = {
+    imageUrl: ``
+  }
+
+
+  handleImageInput = (event) => {
+    tempImageUrl = event.target.value
+  }
+
+  handleClickEvent = () => {
+    this.setState({
+      imageUrl: tempImageUrl
+    })
+  }
+
+
+  
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <h1>Add Image</h1>
+      <input onChange={this.handleImageInput} />
+      <button onClick={this.handleClickEvent}>Add image</button>
+      <Image url={this.state.imageUrl} />
       </div>
     );
   }

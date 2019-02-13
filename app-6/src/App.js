@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Todo from './Components/Todo';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    todoArray: [],
+    userInput: ``
+  }
+
+  handleUserInput =(event) => {
+    this.setState({
+      userInput: event.target.value
+    })
+  }
+
+  handleNewItem = () => {
+    let tempArray = [... this.state.todoArray]
+    tempArray.push(this.state.userInput)
+    this.setState({
+      todoArray: tempArray,
+      userInput: ``
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <input onChange={this.handleUserInput} value={this.state.userInput}/>
+      <button onClick={this.handleNewItem}>Add</button>
+      <Todo array={this.state.todoArray} />
       </div>
     );
   }

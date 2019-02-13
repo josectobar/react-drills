@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Login from './Components/login';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    username: ``,
+    password: ``
+  }
+
+  handleUsername =(event) => {
+    this.setState({
+      username: event.target.value
+    })
+  }
+
+  handlePassword = (event) => {
+    this.setState({
+      password: event.target.value
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+       <input onChange={this.handleUsername} value={this.state.username}/>
+       <input onChange={this.handlePassword} value={this.state.password}/>
+       <Login username={this.state.username} password={this.state.password} />
       </div>
     );
   }
